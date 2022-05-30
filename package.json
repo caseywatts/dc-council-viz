@@ -7,7 +7,7 @@
     "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview",
-    "publish": "npm run build && git subtree push --prefix dist origin gh-pages"
+    "publish": "git status --porcelain && npm run build && git add dist && git commit -m 'commit dist for github-pages' && git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",

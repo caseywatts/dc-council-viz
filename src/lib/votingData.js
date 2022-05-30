@@ -1,4 +1,4 @@
-export const data = [
+export const exampleData = [
   {
     position: "Ward 1",
     name: "Brianne K. Nadeau",

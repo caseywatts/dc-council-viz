@@ -1,48 +1,68 @@
 <script>
   import CouncilmemberCell from "./lib/CouncilmemberCell.svelte";
-  import { data } from "./lib/votingData.js";
+  import { exampleData } from "./lib/votingData.js";
   import DCBackground from "./assets/DC Wards Background.png";
-  // data.forEach((point) => {
-  //   console.log(point);
-  // });
-  function councilmemberForWard(wardNumber) {
+
+  // initialize to my data
+  let dataJSON = JSON.stringify(exampleData);
+  let data = JSON.parse(dataJSON);
+  $: data = JSON.parse(dataJSON);
+
+  // helper function to grab people by their ward
+  function councilmemberForWard(data, wardNumber) {
     return data.filter((councilmember) => {
       return councilmember.position == `Ward ${wardNumber}`;
     })[0];
   }
-  const atLargeCouncilmembers = data.filter((councilmember) => {
+
+  // reactive statement assignments for each person
+  $: atLargeCouncilmembers = data.filter((councilmember) => {
     return councilmember.position == "At Large";
   });
-  const chairperson = data.filter((councilmember) => {
+  $: chairperson = data.filter((councilmember) => {
     return councilmember.position == "Chairperson";
   })[0];
-  console.log(councilmemberForWard(4));
+  $: councilmember_for_ward_1 = councilmemberForWard(data, 1);
+  $: councilmember_for_ward_2 = councilmemberForWard(data, 2);
+  $: councilmember_for_ward_3 = councilmemberForWard(data, 3);
+  $: councilmember_for_ward_4 = councilmemberForWard(data, 4);
+  $: councilmember_for_ward_5 = councilmemberForWard(data, 5);
+  $: councilmember_for_ward_6 = councilmemberForWard(data, 6);
+  $: councilmember_for_ward_7 = councilmemberForWard(data, 7);
+  $: councilmember_for_ward_8 = councilmemberForWard(data, 8);
 </script>
 
-<div class="m-4 border-2 border-slate-300 space-y-1" style="width:700px;">
-  <div class="grid gap-4 grid-cols-4 grid-rows-1 p-2">
-    {#each atLargeCouncilmembers as councilmember}
-      <CouncilmemberCell {councilmember} />
-    {/each}
-    <div />
+<div class="flex">
+  <div>
+    <label for="input-json" />
+    <textarea class="border m-4" id="input-json" cols="30" rows="10" bind:value={dataJSON} />
   </div>
 
-  <div class="grid gap-4 grid-cols-4 grid-rows-4 p-2" style="background-image: url('{DCBackground}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
-    <div />
-    <CouncilmemberCell councilmember={councilmemberForWard(4)} />
-    <div />
-    <CouncilmemberCell councilmember={chairperson} />
-    <CouncilmemberCell councilmember={councilmemberForWard(3)} />
-    <CouncilmemberCell councilmember={councilmemberForWard(1)} />
-    <CouncilmemberCell councilmember={councilmemberForWard(5)} />
-    <div />
-    <div />
-    <CouncilmemberCell councilmember={councilmemberForWard(2)} />
-    <CouncilmemberCell councilmember={councilmemberForWard(6)} />
-    <CouncilmemberCell councilmember={councilmemberForWard(7)} />
-    <div />
-    <div />
-    <CouncilmemberCell councilmember={councilmemberForWard(8)} />
-    <div />
+  <div class="m-4 border-2 border-slate-300 space-y-1" style="width:600px;">
+    <div class="grid gap-4 grid-cols-4 grid-rows-1 p-2">
+      {#each atLargeCouncilmembers as councilmember}
+        <CouncilmemberCell {councilmember} />
+      {/each}
+      <div />
+    </div>
+
+    <div class="grid gap-4 grid-cols-4 grid-rows-4 p-2" style="background-image: url('{DCBackground}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+      <div />
+      <CouncilmemberCell councilmember={councilmember_for_ward_4} />
+      <div />
+      <CouncilmemberCell councilmember={chairperson} />
+      <CouncilmemberCell councilmember={councilmember_for_ward_3} />
+      <CouncilmemberCell councilmember={councilmember_for_ward_1} />
+      <CouncilmemberCell councilmember={councilmember_for_ward_5} />
+      <div />
+      <div />
+      <CouncilmemberCell councilmember={councilmember_for_ward_2} />
+      <CouncilmemberCell councilmember={councilmember_for_ward_6} />
+      <CouncilmemberCell councilmember={councilmember_for_ward_7} />
+      <div />
+      <div />
+      <CouncilmemberCell councilmember={councilmember_for_ward_8} />
+      <div />
+    </div>
   </div>
 </div>

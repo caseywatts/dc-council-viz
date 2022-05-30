@@ -19,6 +19,8 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
-    "dc-council-lims": "^0.1.2"
+    "canvas2image-2": "^2.3.0",
+    "dc-council-lims": "^0.1.2",
+    "html2canvas": "^1.4.1"
   }
 }

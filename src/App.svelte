@@ -2,9 +2,12 @@
   import CouncilmemberCell from "./lib/CouncilmemberCell.svelte";
   import { exampleData } from "./lib/votingData.js";
   import DCBackground from "./assets/DC Wards Background.png";
+  import prettier from "prettier/standalone";
+  import babel from "prettier/parser-babel";
 
   // initialize to my data
   let dataJSON = JSON.stringify(exampleData);
+  dataJSON = prettier.format(dataJSON, { parser: "json", plugins: [babel] });
   let data = JSON.parse(dataJSON);
   $: data = JSON.parse(dataJSON);
 

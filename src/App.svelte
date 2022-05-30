@@ -8,7 +8,7 @@
   let data = JSON.parse(dataJSON);
   $: data = JSON.parse(dataJSON);
 
-  // helper function to grab people by their ward
+  // helper function to grab councilmember records by ward
   function councilmemberForWard(data, wardNumber) {
     return data.filter((councilmember) => {
       return councilmember.position == `Ward ${wardNumber}`;
@@ -39,30 +39,29 @@
   </div>
 
   <div class="m-4 border-2 border-slate-300 space-y-1" style="width:600px;">
-    <div class="grid gap-4 grid-cols-4 grid-rows-1 p-2">
+    <div class="grid gap-4 grid-cols-4 grid-rows-4 p-2" style="background-image: url('{DCBackground}'); background-size: contain; background-repeat: no-repeat; background-position: bottom center;">
       {#each atLargeCouncilmembers as councilmember}
         <CouncilmemberCell {councilmember} />
       {/each}
-      <div />
-    </div>
 
-    <div class="grid gap-4 grid-cols-4 grid-rows-4 p-2" style="background-image: url('{DCBackground}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
       <div />
       <CouncilmemberCell councilmember={councilmember_for_ward_4} />
       <div />
+
       <CouncilmemberCell councilmember={chairperson} />
       <CouncilmemberCell councilmember={councilmember_for_ward_3} />
       <CouncilmemberCell councilmember={councilmember_for_ward_1} />
       <CouncilmemberCell councilmember={councilmember_for_ward_5} />
+
       <div />
       <div />
       <CouncilmemberCell councilmember={councilmember_for_ward_2} />
       <CouncilmemberCell councilmember={councilmember_for_ward_6} />
+
       <CouncilmemberCell councilmember={councilmember_for_ward_7} />
       <div />
       <div />
       <CouncilmemberCell councilmember={councilmember_for_ward_8} />
-      <div />
     </div>
   </div>
 </div>

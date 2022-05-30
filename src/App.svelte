@@ -35,7 +35,7 @@
   $: councilmember_for_ward_8 = councilmemberForWard(data, 8);
 </script>
 
-<div class="flex">
+<div class="flex items-start">
   <div class="m-4">
     <label class="block mb-3 text-xl" for="input-json">Input Data for Visualization</label>
     <textarea class="border" id="input-json" cols="60" rows="70" bind:value={dataJSON} />

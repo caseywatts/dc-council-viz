@@ -7,7 +7,7 @@
 
   // initialize to my data
   let dataJSON = JSON.stringify(exampleData);
-  dataJSON = prettier.format(dataJSON, { parser: "json", plugins: [babel] });
+  dataJSON = prettier.format(dataJSON, { parser: "json-stringify", plugins: [babel] });
   let data = JSON.parse(dataJSON);
   $: data = JSON.parse(dataJSON);
 
@@ -38,7 +38,7 @@
 <div class="flex">
   <div>
     <label for="input-json" />
-    <textarea class="border m-4" id="input-json" cols="30" rows="10" bind:value={dataJSON} />
+    <textarea class="border m-4" id="input-json" cols="60" rows="70" bind:value={dataJSON} />
   </div>
 
   <div class="m-4 border-2 border-slate-300 space-y-1" style="width:600px;">
